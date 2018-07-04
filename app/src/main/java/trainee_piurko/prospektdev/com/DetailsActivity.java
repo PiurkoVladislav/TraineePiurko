@@ -33,10 +33,14 @@ public class DetailsActivity extends AppCompatActivity {
         mAppItem.setUrl(intent.getStringExtra("put url"));
         mAppItem.setCaption(intent.getStringExtra("put title"));
         mAppItem.setId(intent.getStringExtra("put id"));
+        mAppItem.setDirUrl(intent.getStringExtra("put dir url"));
 
 
         mImageView = (ImageView) findViewById(R.id.details_image_view);
-        Glide.with(DetailsActivity.this).load(mAppItem.getUrl()).into(mImageView);
+        if(MainActivity.isOnline(DetailsActivity.this)) {
+            Glide.with(DetailsActivity.this).load(mAppItem.getUrl()).into(mImageView);
+        }else
+            Glide.with(DetailsActivity.this).load(mAppItem.getDirUrl()).into(mImageView);
 
         mTextView = (TextView) findViewById(R.id.details_text_view);
         mTextView.setText("Id: "+mAppItem.getId()+"\n"+"Name: "+mAppItem.getCaption());

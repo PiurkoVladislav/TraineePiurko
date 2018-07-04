@@ -8,6 +8,8 @@ public class AppDBSchema {
             public static final String ID = "id";
             public static final String TITLE = "caption";
             public static final String URL = "url";
+            public static final String DIR_URL = "dir_url";
+
         }
     }
 }

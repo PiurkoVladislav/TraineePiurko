@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 
 import java.util.ArrayList;
@@ -15,9 +16,12 @@ import trainee_piurko.prospektdev.com.db.AppDBSchema;
 
 public class DBAssistant {
 
+    private static final String TAG = "DBAssistant";
+
     private static DBAssistant sDBAssistant;
     private Context mContext;
-    private SQLiteDatabase mDatabase;
+    private SQLiteDatabase mDatabas;
+    private AppBaseHalper mAppBaseHalper;
 
 
     public static DBAssistant get(Context context){
@@ -28,9 +32,9 @@ public class DBAssistant {
     }
 
     private DBAssistant(Context context) {
+        mAppBaseHalper = new AppBaseHalper(context);
         mContext = context.getApplicationContext();
-        mDatabase = new AppBaseHalper(mContext)
-                .getWritableDatabase();
+        mDatabas = mAppBaseHalper.getWritableDatabase();
 //        mAppContext = appContext;
     }
 
@@ -49,6 +53,7 @@ public class DBAssistant {
         }finally {
             cursor.close();                         //ВАЖНО!!!!!
         }
+        Log.i(TAG,"Получение данных из БД");
         return items;
     }
 
@@ -62,9 +67,9 @@ public class DBAssistant {
              ) {
             ContentValues values = getContentValues(item);
 
-            mDatabase.insert(AppDBSchema.PhotoTable.NAME,null,values);      //первый параметр передает название базы, третий значение, а второй дает возможность создать пустую вставку
+            mDatabas.insert(AppDBSchema.PhotoTable.NAME,null,values);      //первый параметр передает название базы, третий значение, а второй дает возможность создать пустую вставку
         }
-
+        Log.i(TAG,"БД создана");
     }
 
 
@@ -88,12 +93,14 @@ public class DBAssistant {
         values.put(AppDBSchema.PhotoTable.Cols.ID, item.getId() );
         values.put(AppDBSchema.PhotoTable.Cols.TITLE, item.getCaption());
         values.put(AppDBSchema.PhotoTable.Cols.URL, item.getUrl());
+        values.put(AppDBSchema.PhotoTable.Cols.DIR_URL, item.getUrl());
+
 
         return values;
     }
 
     private AppCursorWrapper queryAppItems(String whereClause, String[] whereArgs){
-        Cursor cursor = mDatabase.query(
+        Cursor cursor = mDatabas.query(
                 AppDBSchema.PhotoTable.NAME,
                 null,                //Columns - null выбирает все столбцы
                 whereClause,

@@ -9,6 +9,7 @@ public class AppItem {
     private String location;
     private String description;
     private String mUrlNormal;
+    private String dirUrl;
 
     public String getCaption() {
         return caption;
@@ -73,5 +74,13 @@ public class AppItem {
 
     public String getUrlNormal() {
         return mUrlNormal;
+    }
+
+    public String getDirUrl() {
+        return dirUrl;
+    }
+
+    public void setDirUrl(String dirUrl) {
+        this.dirUrl = dirUrl;
     }
 }

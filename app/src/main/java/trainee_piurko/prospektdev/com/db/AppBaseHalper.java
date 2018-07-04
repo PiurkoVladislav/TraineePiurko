@@ -19,7 +19,8 @@ public class AppBaseHalper extends SQLiteOpenHelper {
                 " _id integer primary key autoincrement, " +
                 AppDBSchema.PhotoTable.Cols.ID + ", " +
                 AppDBSchema.PhotoTable.Cols.TITLE + ", " +
-                AppDBSchema.PhotoTable.Cols.URL + ")");
+                AppDBSchema.PhotoTable.Cols.URL+ ", " +
+                AppDBSchema.PhotoTable.Cols.DIR_URL+ ")");
     }
 
     @Override
