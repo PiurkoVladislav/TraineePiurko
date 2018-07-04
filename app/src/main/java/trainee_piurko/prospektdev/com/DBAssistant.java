@@ -93,7 +93,7 @@ public class DBAssistant {
         values.put(AppDBSchema.PhotoTable.Cols.ID, item.getId() );
         values.put(AppDBSchema.PhotoTable.Cols.TITLE, item.getCaption());
         values.put(AppDBSchema.PhotoTable.Cols.URL, item.getUrl());
-        values.put(AppDBSchema.PhotoTable.Cols.DIR_URL, item.getUrl());
+        values.put(AppDBSchema.PhotoTable.Cols.DIR_URL, item.getDirUrl());
 
 
         return values;
