@@ -126,16 +126,15 @@ public class MainActivity extends AppCompatActivity {
                         });
             }else {
                 Glide.with(MainActivity.this)
-                        .load(appItem.getDirUrl())
+                        .load(appItem.getUrl())
                         .into(holder.itemImageViev);
-                Log.i(TAG,appItem.getDirUrl());
             }
 
             holder.itemImageViev.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent i = new Intent(MainActivity.this,DetailsActivity.class);
-                    i.putExtra(PUT_URL, appItem.getUrlNormal());
+                    i.putExtra(PUT_URL, appItem.getUrl());
                     i.putExtra(PUT_TITLE, appItem.getCaption());
                     i.putExtra(PUT_ID, appItem.getId());
                     i.putExtra(PUT_DIR_URL, appItem.getDirUrl());

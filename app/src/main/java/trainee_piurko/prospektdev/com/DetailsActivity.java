@@ -40,7 +40,7 @@ public class DetailsActivity extends AppCompatActivity {
         if(MainActivity.isOnline(DetailsActivity.this)) {
             Glide.with(DetailsActivity.this).load(mAppItem.getUrl()).into(mImageView);
         }else
-            Glide.with(DetailsActivity.this).load(mAppItem.getDirUrl()).into(mImageView);
+            Glide.with(DetailsActivity.this).load(mAppItem.getUrl()).into(mImageView);
 
         mTextView = (TextView) findViewById(R.id.details_text_view);
         mTextView.setText("Id: "+mAppItem.getId()+"\n"+"Name: "+mAppItem.getCaption());
